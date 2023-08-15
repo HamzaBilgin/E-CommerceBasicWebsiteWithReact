@@ -1,9 +1,10 @@
-
+import { useContext } from "react";
+import { CartContext } from "../../context/CartProvider";
 import "./CartItem.css";
 
 
 const CartItem = (props) => {
- 
+  const { removeItem } = useContext(CartContext);
   return (
     <li className="cart-item">
     <div className="cart-item-img">
@@ -20,6 +21,10 @@ const CartItem = (props) => {
       <a
         href="/"
         className="cart-item-remove"
+        onClick={(e) => {
+          e.preventDefault();
+          removeItem(props.product.id);
+        }}
       >
         x
       </a>
